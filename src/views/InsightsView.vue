@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from 'vue'
-const insights = ref(null)
+import { onMounted } from 'vue'
+import { useInsightsStore } from '@/stores/insights'
 
-onBeforeMount(() => {
-  console.log('mounted')
-  fetch('https://localhost:7082/runs/insights?count=5&order=Desc')
-    .then((response) => response.json())
-    .then((data) => (insights.value = data))
+const insightsStore = useInsightsStore()
+
+onMounted(() => {
+  insightsStore.fetchData()
 })
 </script>
 
 <template>
-  <div class="insights">
-    <h1>Runs Count: {{ insights.runsCount }}</h1>
-    <!-- <h1>Hello world</h1> -->
+  <div v-if="insightsStore.loading">Loading...</div>
+  <div v-if="insightsStore.isLoaded" class="insights">
+    <!-- <h1>Runs Count: {{ insightsStore.data.runsCount }}</h1> -->
+    <h1>Percentage of Completed Runs: {{ insightsStore.completedRunsPercentage }}</h1>
+    <!-- <h1>Percentage of Passed Runs: {{ insightsStore.data.passedRunsPercentage }}</h1>
+    <h1>Median time of completed runs: {{ insightsStore.data.medianTimeCompletedRuns }}</h1> -->
+    <h1>Top 5 completed runs</h1>
+    <div>
+      <!-- <li v-for="run in insightsStore.data.topRuns">
+        {{ run.duration }}
+      </li> -->
+    </div>
   </div>
 </template>
 
