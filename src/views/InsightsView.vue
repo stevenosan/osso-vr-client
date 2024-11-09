@@ -14,8 +14,8 @@ onMounted(() => {
   <div v-if="insightsStore.isLoaded" class="insights">
     <!-- <h1>Runs Count: {{ insightsStore.data.runsCount }}</h1> -->
     <h1>Percentage of Completed Runs: {{ insightsStore.completedRunsPercentage }}</h1>
-    <!-- <h1>Percentage of Passed Runs: {{ insightsStore.data.passedRunsPercentage }}</h1>
-    <h1>Median time of completed runs: {{ insightsStore.data.medianTimeCompletedRuns }}</h1> -->
+    <h1>Percentage of Passed Runs: {{ insightsStore.passedRunsPercentage }}</h1>
+    <h1>Median time of completed runs: {{ insightsStore.medianTimeCompletedRuns }}</h1>
     <h1>Top 5 completed runs</h1>
     <div>
       <!-- <li v-for="run in insightsStore.data.topRuns">

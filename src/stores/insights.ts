@@ -3,6 +3,8 @@ import { defineStore } from 'pinia'
 export const useInsightsStore = defineStore('insightsStore', {
   state: (): InsightsInfo => ({
     completedRunsPercentage: 0, // The object we want to populate
+    passedRunsPercentage: 0, // The object we want to populate
+    medianTimeCompletedRuns: 0, // The object we want to populate
     loading: false, // To track loading state
     isLoaded: false,
     error: '',
@@ -26,7 +28,9 @@ export const useInsightsStore = defineStore('insightsStore', {
         }
 
         const result = await response.json()
-        this.completedRunsPercentage = result.completedRunsPercentage // Populate the data object
+        this.completedRunsPercentage = result.completedRunsPercentage
+        this.passedRunsPercentage = result.passedRunsPercentage
+        this.medianTimeCompletedRuns = result.passedRunsPercentage
       } catch (err) {
         // this.error = err.message // Set error message if API call fails
       } finally {
@@ -39,6 +43,8 @@ export const useInsightsStore = defineStore('insightsStore', {
 
 interface InsightsInfo {
   completedRunsPercentage: number
+  passedRunsPercentage: number
+  medianTimeCompletedRuns: number
   loading: boolean
   isLoaded: boolean
   error: string
