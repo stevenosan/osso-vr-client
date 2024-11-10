@@ -10,17 +10,27 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="insightsStore.loading">Loading...</div>
+  <div v-if="!insightsStore.isLoaded">Loading...</div>
   <div v-if="insightsStore.isLoaded" class="insights">
     <!-- <h1>Runs Count: {{ insightsStore.data.runsCount }}</h1> -->
-    <h1>Percentage of Completed Runs: {{ insightsStore.completedRunsPercentage }}</h1>
-    <h1>Percentage of Passed Runs: {{ insightsStore.passedRunsPercentage }}</h1>
-    <h1>Median time of completed runs: {{ insightsStore.medianTimeCompletedRuns }}</h1>
+    <span
+      >Percentage of Completed Runs: {{ insightsStore.insightsInfo.completedRunsPercentage }}</span
+    >
+    <span>Percentage of Passed Runs: {{ insightsStore.insightsInfo.passedRunsPercentage }}</span>
+    <span
+      >Median time of completed runs: {{ insightsStore.insightsInfo.medianTimeCompletedRuns }}</span
+    >
     <h1>Top 5 completed runs</h1>
     <div>
-      <!-- <li v-for="run in insightsStore.data.topRuns">
-        {{ run.duration }}
-      </li> -->
+      <v-list lines="one">
+        <v-list-item
+          v-for="run in insightsStore.insightsInfo.topRuns"
+          :key="run.id"
+          :title="'User:' + run.userName"
+          :subtitle="'Duration:' + run.duration"
+        >
+        </v-list-item>
+      </v-list>
     </div>
   </div>
 </template>
