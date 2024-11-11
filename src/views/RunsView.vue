@@ -11,10 +11,9 @@ onMounted(() => {
 
 <template>
   <div class="runs">
-    <span> Hello world</span>
-    <v-list lines="one">
+    <v-list lines="two" class="scrollable-list">
       <v-list-item
-        v-for="run in runsStore.runs"
+        v-for="run in runsStore.sortedRuns"
         :key="run.id"
         :title="'User:' + run.userName"
         :subtitle="'Duration:' + run.duration"
@@ -25,12 +24,9 @@ onMounted(() => {
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .runs {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.scrollable-list {
+  max-height: 300px; /* Set the fixed height for the list */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 </style>

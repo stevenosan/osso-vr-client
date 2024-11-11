@@ -36,6 +36,9 @@ export const useRunsStore = defineStore('runsStore', {
     getRunById: (state) => {
       return (runId: string) => state.runs.find((run) => run.id === runId)
     },
+    sortedRuns: (state) => {
+      return [...state.runs].sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+    },
   },
 })
 

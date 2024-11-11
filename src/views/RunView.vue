@@ -20,27 +20,28 @@ const run = computed(() => {
 </script>
 
 <template>
-  <div class="run">
-    <v-list lines="one">
-      <v-list-item
-        v-for="interaction in run?.interactions"
-        :key="interaction.id"
-        :title="interaction.id"
-      >
-        <span>Actual Time: {{ interaction.actualTime }}</span>
-        <span>Completed: {{ interaction.completed }}</span>
-        <span>Passed: {{ interaction.passed }}</span>
-      </v-list-item>
+  <div>
+    <v-list lines="four" class="scrollable-list">
+      <v-list-item-group v-if="run?.interactions">
+        <v-list-item v-for="interaction in run?.interactions" :key="interaction.id">
+          <v-list-item-content>
+            <v-list-item-title class="headline">{{ interaction.id }}</v-list-item-title>
+            <v-list-item-subtitle class="body-2">
+              <div><strong>Goal Time:</strong> {{ interaction.goalTime }}</div>
+              <div><strong>Actual Time:</strong> {{ interaction.actualTime }}</div>
+              <div><strong>Completed:</strong> {{ interaction.completed }}</div>
+              <div><strong>Passed:</strong> {{ interaction.passed }}</div>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
     </v-list>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .run {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<style scoped>
+.scrollable-list {
+  max-height: 300px; /* Set the fixed height for the list */
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 </style>

@@ -11,15 +11,14 @@ onMounted(() => {
 
 <template>
   <div v-if="!insightsStore.isLoaded">Loading...</div>
-  <div v-if="insightsStore.isLoaded" class="insights">
-    <!-- <h1>Runs Count: {{ insightsStore.data.runsCount }}</h1> -->
-    <span
-      >Percentage of Completed Runs: {{ insightsStore.insightsInfo.completedRunsPercentage }}</span
-    >
-    <span>Percentage of Passed Runs: {{ insightsStore.insightsInfo.passedRunsPercentage }}</span>
-    <span
-      >Median time of completed runs: {{ insightsStore.insightsInfo.medianTimeCompletedRuns }}</span
-    >
+  <div v-if="insightsStore.isLoaded">
+    <div>
+      Percentage of Completed Runs: {{ insightsStore.insightsInfo.completedRunsPercentage }}
+    </div>
+    <div>Percentage of Passed Runs: {{ insightsStore.insightsInfo.passedRunsPercentage }}</div>
+    <div>
+      Median time of completed runs: {{ insightsStore.insightsInfo.medianTimeCompletedRuns }}
+    </div>
     <h1>Top 5 completed runs</h1>
     <div>
       <v-list lines="one">
@@ -34,13 +33,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .insights {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>
