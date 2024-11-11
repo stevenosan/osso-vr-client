@@ -20,6 +20,7 @@ onMounted(() => {
             }}</v-list-item-title>
             <v-list-item-subtitle class="body-2">
               <div><strong>User:</strong> {{ run.userName }}</div>
+              <div><strong>Duration:</strong> {{ run.duration }}</div>
               <div><strong>Completed:</strong> {{ run.completed }}</div>
               <div><strong>Passed:</strong> {{ run.passed }}</div>
             </v-list-item-subtitle>
@@ -29,21 +30,6 @@ onMounted(() => {
     </v-list>
   </div>
 </template>
-
-<!-- <template>
-  <div class="runs">
-    <v-list lines="two" class="scrollable-list">
-      <v-list-item
-        v-for="run in runsStore.sortedRuns"
-        :key="run.id"
-        :title="'User:' + run.userName"
-        :subtitle="'Duration:' + run.duration"
-        :to="'run/' + run.id"
-      >
-      </v-list-item>
-    </v-list>
-  </div>
-</template> -->
 
 <style scoped>
 .scrollable-list {
